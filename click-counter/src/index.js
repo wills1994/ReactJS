@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import './App';
+import AutorQuiz  from './AutorQuiz';
+import Identity  from './Identity';
 import PropTypes from 'prop-types';
 import registerServiceWorker from './registerServiceWorker';
+import Form from "react-jsonschema-form";
 
 let model = { clicks: 0 };
-
-
-
-
-
-
 
 function Clicker({ handleClick }) {
     return <div>
@@ -21,6 +18,15 @@ function Clicker({ handleClick }) {
     </div>;
 }
 
+function Frm() {
+    return <div>
+      <input type="text" value="react"/><br/>
+      <textarea value="react"/><br/>
+      <select value="sunday">
+        <option value="saturday">Saturday</option>
+        <option value="sunday">Sunday</option>
+      </select></div>;
+  }  
 
 
 function DangerContainer(props){
@@ -42,21 +48,54 @@ Sum.PropTypes = {
 const state = {
     showSum: true
 };
+
+      
+const schema = {
+  "title": "Identity",
+  "type": "object",
+  "required": [
+    "firstName",
+    "lastName"
+  ],
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "title": "First name",
+      "minLength": 1,
+      "maxLength": 6
+    },
+    "lastName": {
+      "type": "string",
+      "title": "Last name"
+    },
+    "age": {
+      "type": "number",
+      "title": "Age"
+    }
+  }
+};
+
 function render() {
 
-    ReactDOM.render(
+    ReactDOM.render((
+        <Form schema={schema} noHtml5Validate onSubmit={console.log} showErrorList={false} />
+      ), document.getElementById("root"));
+
+//    ReactDOM.render(<Identity />,document.getElementById('root'));
+
+    /*ReactDOM.render(
         <ConditionalDisplay isVisible={state.showSum}>
             <h1>A <span>SUM</span></h1>
             <Sum a={5} b={2} />
         </ConditionalDisplay>
        ,
 
-        document.getElementById('root'));
-
+        document.getElementById('root'));*/
+    /*
     setInterval(() => {
         state.showSum = !state.showSum;
         render();
-    }, 2000);
+    }, 2000);*/
 
     //Print HTML
    /* ReactDOM.render(<DangerContainer dangerous="<strong>HOLA</strong>" />, document.getElementById('root'));

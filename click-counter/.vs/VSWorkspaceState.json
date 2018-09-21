@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\src\\AutorQuiz.js",
   "PreviewInSolutionExplorer": false
 }
